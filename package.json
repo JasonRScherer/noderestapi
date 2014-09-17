@@ -1,0 +1,11 @@
+{
+  "name": "noderestapi",
+  "description": "Basic REST API with node",
+  "version": "0.0.1",
+  "private": true,
+  "dependencies": {
+    "express": "~4.9.*",
+    "mongoose": "~3.8.16",
+    "body-parser": "~1.0.1"
+  }
+}
