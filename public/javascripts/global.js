@@ -6,7 +6,7 @@ $(document).ready(function(){
     populateTable();
 });
 $('#btnAddMessage').on('click', addMessage);
-
+$('#btnSearchMessages').on('click', searchMessage);
 //
 //
 //Fills table
@@ -61,3 +61,29 @@ function addMessage(event){
         return false;
     }
 };
+function searchMessage(event){
+    event.preventDefault();
+    //Basic Validation
+    var errorCount = 0;
+    $('#searchMessage input').each(function(index, val){
+        if($(this).val() === ''){ errorCount++;}
+    });
+    if(errorCount === 0){
+        var newMessage =  $('#searchMessage fieldset input#searchMessage').val()
+        var resultUrl = 'http://localhost:8080/solr/collection1/query?q=message_s:*'+newMessage+'*&fl=message_s&wt=json&json.wrf=?';
+        $.getJSON(resultUrl, function(result){
+            var Parent = document.getElementById('Results');
+            for (var i=0; i < result.response.docs.length; i++){
+                var thisResult = result.response.docs[i].message_s;
+                var NewDiv = document.createElement("DIV");
+                NewDiv.innerHTML = thisResult;
+                Parent.appendChild(NewDiv);
+            }
+        });
+
+    }
+    else {
+        return false;
+    }
+};
+
