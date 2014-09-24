@@ -19,6 +19,7 @@ function populateTable(){
 
             tableContent += '<tr>';
             tableContent += '<td>'+ this.message_s +'</td>';
+            tableContent += '<td>'+ this.date_s + '</td>';
             tableContent += '</tr>';
         });
         $('#messageList table tbody').html(tableContent);
@@ -43,8 +44,12 @@ function addMessage(event){
             url: '/api/messages',
             dataType: 'JSON'
         }).done(function(response){
-            if (response.msg === ''){
+            if (response.message === 'New Message Created'){
+
+                //Clears the form inputs
                 $('#addMessage fieldset input').val('');
+
+                //Repopulate table
                 populateTable();
             }
             else {
