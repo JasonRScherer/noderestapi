@@ -7,37 +7,47 @@
 //  Call the packages we need
 //
 var express = require('express');
-var app = express();
 var bodyParser = require('body-parser');
 var Message = require('./app/models/message');
+var pub = __dirname;
+var path = require('path');
+var app = express();
+//Database configure
+//
+var mongoose = require('mongoose');
+var db = mongoose.connect('mongodb://localhost:27017/messages');
 //Configure the app to use the body parser
 //Lets you easily get data from POST
 //
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
+//Sets the Directory of the views
+app.set('views', path.join(__dirname, 'views'));
 
+//Sets the default template engine to Jade
+app.set('view engine', 'jade');
+app.use(express.static(path.join(__dirname, 'public')));
+app.use(function(req, res,next){
+    req.db = db;
+    next();
+});
 var port = process.env.PORT || 3000;    //Sets the port being used
-//Database configure
-//
-var mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost:27017/messages');
-
 //Routes for API
 //
 var router = express.Router();  //Starts instance of express router
 
 //Middleware for all requests
-
+//Needs updating to do logging when API is used it will output to console
 router.use(function(req, res, next){
     //Logging here
-    console.log('Hey something is going on');
+    console.log(req.method, req.url);
     next();
 });
 
 //Get
 
 router.get('/', function(req, res){
-    res.json({message_s: "Testing of the route"});
+    res.render('index', {title: 'Express'});
 });
 
 //Routes that end in message
@@ -47,7 +57,7 @@ router.route('/messages')
     //Creates a message
     .post(function(req, res){
         var message = new Message();
-        message.messeage_s = req.body.name; //Sets the message from the request
+        message.message_s = req.body.message_s; //Sets the message from the request
         message.save(function(err){
             if(err)
                 res.send(err);
@@ -60,8 +70,8 @@ router.route('/messages')
         Message.find(function(err, messages){
             if(err)
                 res.send(err);
-
             res.json(messages);
+           // res.render('index', {title:'Message API', Message:messages});
         });
     });
 
