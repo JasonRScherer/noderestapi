@@ -1,8 +1,17 @@
 doctype html
 html
     head
-        title= title
+        block head
+            block title
+                title ''Welcome to Node'
+        link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css')
+        | <style>
+        | body {padding-top:60px; padding-left:60px;}
+        | </style>
+        </style>
     body
+        include header
         block content
+        include footer
         script(src='http://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js')
         script(src='/javascripts/global.js')

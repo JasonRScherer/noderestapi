@@ -58,7 +58,7 @@ router.route('/messages')
     .post(function(req, res){
         var message = new Message();
         message.message_s = req.body.message_s; //Sets the message from the request
-        message.date_s = req.body.date_s; //Sets the date from when posted
+        message.createdAt = req.body.createdAt; //Sets the date from when posted
         message.save(function(err){
             if(err)
                 res.send(err);

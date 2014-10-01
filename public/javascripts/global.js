@@ -65,20 +65,22 @@ function searchMessage(event){
     event.preventDefault();
     //Basic Validation
     var errorCount = 0;
+    $('#Results').empty();
     $('#searchMessage input').each(function(index, val){
         if($(this).val() === ''){ errorCount++;}
     });
     if(errorCount === 0){
         var newMessage =  $('#searchMessage fieldset input#searchMessage').val()
-        var resultUrl = 'http://localhost:8080/solr/collection1/query?q=message_s:*'+newMessage+'*&fl=message_s&wt=json&json.wrf=?';
+        var resultUrl = 'http://172.16.7.237:8080/solr/collection1/query?q=message_s:*'+newMessage+'*&fl=message_s, date_s&wt=json&json.wrf=?&rows=1000';
         $.getJSON(resultUrl, function(result){
             var Parent = document.getElementById('Results');
+            var thisResult = 'Results found:' + result.response.numFound + '<br/>';
             for (var i=0; i < result.response.docs.length; i++){
-                var thisResult = result.response.docs[i].message_s;
+                thisResult += '<tr><td>'+result.response.docs[i].message_s + '</td><td>' +result.response.docs[i].date_s+ '</td></tr><br/>';
                 var NewDiv = document.createElement("DIV");
                 NewDiv.innerHTML = thisResult;
-                Parent.appendChild(NewDiv);
             }
+            Parent.appendChild(NewDiv);
         });
 
     }
