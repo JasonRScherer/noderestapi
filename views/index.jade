@@ -1,41 +1,35 @@
 extends layout
 
 block content
-    h1=title
-    p Welcome to the API
-
-    //Wrapper
-    div.container
-    #wrapper
-
-        //Messages
-        h2 Message List
-        #messageList
-            table
-                th Message
-                th Date Entered
-            tbody
-        // / MESSAGE LIST
-        //ADD Message
-        h2 Add Message
-        #addMessage
-            fieldset
-                input#inputMessage(type='text', placeholder='Message')
-                button#btnAddMessage Add Message
-        //  /ADD MESSAGE
-        //Search Messages
-        h2 Search Messages
-        #searchMessage
+    div.row
+        div.col-md-5
+                //Messages
+                h2 Message List
+                table#messagesTable
+                    tr
+                        td Message
+                        td Date
+            // / MESSAGE LIST
+        div.col-md-5
+            //ADD Message
+            h2 Add Message
+            #addMessage
+                fieldset
+                    input#inputMessage(type='text', placeholder='Message')
+                    button#btnAddMessage Add Message
+            //  /ADD MESSAGE
+            //Search Messages
+            h2 Search Messages
+            #searchMessage
             fieldset
                 input#searchMessage(type='text', placeholder='word')
                 button#btnSearchMessages Search Messages
 
         //  /SEARCH MESSAGE
-
+        div.container
         //Results
-        #Results
-            table
+           table#resultsTable
                 th Messages
             tbody
         //  /RESULTS
-    //  /WRAPPER
+        //  /WRAPPER

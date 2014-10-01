@@ -13,16 +13,17 @@ $('#btnSearchMessages').on('click', searchMessage);
 
 function populateTable(){
     var tableContent = '';
+    $('#messagesTable tr').not(':first').remove();
     $.getJSON('/api/messages', function(data){
         messageListData = data;
+        var i=0;
         $.each(data, function(){
-
             tableContent += '<tr>';
             tableContent += '<td>'+ this.message_s +'</td>';
             tableContent += '<td>'+ this.date_s + '</td>';
             tableContent += '</tr>';
         });
-        $('#messageList table tbody').html(tableContent);
+        $('#messagesTable tbody:last').append(tableContent);
     });
 };
 
@@ -34,9 +35,11 @@ function addMessage(event){
         if($(this).val() === ''){ errorCount++;}
     });
     if(errorCount === 0){
+        var dateTime = new Date();
+        var dateTimeStr = dateTime.toLocaleDateString() + ' ' + dateTime.toLocaleTimeString();
         var newMessage = {
             'message_s': $('#addMessage fieldset input#inputMessage').val(),
-            'date_s': new Date()
+            'date_s': dateTimeStr
         }
         $.ajax({
             type: 'POST',
@@ -73,8 +76,9 @@ function searchMessage(event){
         var newMessage =  $('#searchMessage fieldset input#searchMessage').val()
         var resultUrl = 'http://172.16.7.237:8080/solr/collection1/query?q=message_s:*'+newMessage+'*&fl=message_s, date_s&wt=json&json.wrf=?&rows=1000';
         $.getJSON(resultUrl, function(result){
-            var Parent = document.getElementById('Results');
+            var Parent = document.getElementById('resultsTable');
             var thisResult = 'Results found:' + result.response.numFound + '<br/>';
+            alert(result.response.docs.length);
             for (var i=0; i < result.response.docs.length; i++){
                 thisResult += '<tr><td>'+result.response.docs[i].message_s + '</td><td>' +result.response.docs[i].date_s+ '</td></tr><br/>';
                 var NewDiv = document.createElement("DIV");

@@ -8,6 +8,7 @@ var Schema = mongoose.Schema;
 
 var MessageSchema = new Schema({
     message_s: String,
+    date_s: String
 });
 
 module.exports = mongoose.model('Message', MessageSchema);
