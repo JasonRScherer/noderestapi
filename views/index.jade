@@ -20,16 +20,16 @@ block content
             //  /ADD MESSAGE
             //Search Messages
             h2 Search Messages
-            #searchMessage
-            fieldset
+            fieldset#searchMessage
                 input#searchMessage(type='text', placeholder='word')
                 button#btnSearchMessages Search Messages
 
-        //  /SEARCH MESSAGE
-        div.container
-        //Results
-           table#resultsTable
-                th Messages
-            tbody
+            //Results
+            table#resultsTable
+                tr
+                    td Message
+                    td Date
+            #numOfResults
+            
         //  /RESULTS
         //  /WRAPPER
