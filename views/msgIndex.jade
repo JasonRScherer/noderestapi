@@ -1,0 +1,39 @@
+extends layout
+
+block content
+    div.row
+        div.col-md-5
+                //Messages
+                h2 Message List
+                p#foundRecords Records Found: 
+                    p
+                table#messagesTable(class="table")
+                    tr
+                        td Message
+                        td Date
+            // / MESSAGE LIST
+        div.col-md-5
+            //ADD Message
+            h2 Add Message
+            #addMessage
+                fieldset
+                    input#inputMessage(type='text', placeholder='Message')
+                    button#btnAddMessage Add Message
+            //  /ADD MESSAGE
+            //Search Messages
+            h2 Search Messages
+            fieldset#searchMessage
+                input#searchMessage(type='text', placeholder='word')
+                button#btnSearchMessages Search Messages
+
+            //Results
+            table#resultsTable(class ="table")
+                tr
+                    td Message
+                    td Date
+            #numOfResults
+        //  /RESULTS
+        //  /WRAPPER
+
+        script(src='/javascripts/msgs.js')
+

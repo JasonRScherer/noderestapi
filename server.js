@@ -47,7 +47,13 @@ router.use(function(req, res, next){
 //Get
 
 router.get('/', function(req, res){
-    res.render('index', {title: 'Express'});
+    res.render('index');
+});
+router.get('/temp', function(req, res){
+    res.render('tempIndex');
+});
+router.get('/msg', function(req, res){
+    res.render('msgIndex');
 });
 
 //Routes that end in message
@@ -113,6 +119,29 @@ router.route('/messages/:message_id')
 
         });
     });
+
+router.route('/temperatures')
+
+    //Creates a new temperature data point
+    .post(function(req, res){
+        var temp = new Temperature();
+        message.messagesTableage_s = req.body.message_s; //Sets the message from the request
+        message.date_s = req.body.date_s; //Sets the date from when posted
+        message.save(function(err){
+            if(err)
+                res.send(err);
+
+            res.json({message: 'New Message Created'});
+        });
+    })
+    //Gets all the messages
+    .get(function(req, res){
+        Message.find(function(err, messages){
+            if(err)
+                res.send(err);
+            res.json(messages);
+           // res.render('index', {title:'Message API', Message:messages});
+        });
 
 //Register our routes
 //All routes will use prefix api
