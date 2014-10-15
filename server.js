@@ -9,6 +9,7 @@
 var express = require('express');
 var bodyParser = require('body-parser');
 var Message = require('./app/models/message');
+var Temperature = require('./app/models/temperature');
 var pub = __dirname;
 var path = require('path');
 var app = express();
@@ -78,7 +79,6 @@ router.route('/messages')
             if(err)
                 res.send(err);
             res.json(messages);
-           // res.render('index', {title:'Message API', Message:messages});
         });
     });
 
@@ -125,9 +125,8 @@ router.route('/temperatures')
     //Creates a new temperature data point
     .post(function(req, res){
         var temp = new Temperature();
-        message.messagesTableage_s = req.body.message_s; //Sets the message from the request
-        message.date_s = req.body.date_s; //Sets the date from when posted
-        message.save(function(err){
+        temp.temp_l = req.body.temp_l; //Sets the message from the request
+        temp.save(function(err){
             if(err)
                 res.send(err);
 
@@ -136,12 +135,12 @@ router.route('/temperatures')
     })
     //Gets all the messages
     .get(function(req, res){
-        Message.find(function(err, messages){
+        Temperature.find(function(err, temps){
             if(err)
                 res.send(err);
-            res.json(messages);
-           // res.render('index', {title:'Message API', Message:messages});
+            res.json(temps);
         });
+    });
 
 //Register our routes
 //All routes will use prefix api

@@ -27,7 +27,7 @@ function populateTable(){
         var numOfRecords = messageListData.length;
         $('#foundRecords').replaceWith("<p id='foundRecords'>Records Found:"+ numOfRecords + "</p>");
     });
-};
+}
 
 function addMessage(event){
     event.preventDefault();
@@ -42,7 +42,7 @@ function addMessage(event){
         var newMessage = {
             'message_s': $('#addMessage fieldset input#inputMessage').val(),
             'date_s': dateTimeStr
-        }
+        };
         $.ajax({
             type: 'POST',
             data: newMessage,
@@ -65,7 +65,7 @@ function addMessage(event){
     else {
         return false;
     }
-};
+}
 function searchMessage(event){
     event.preventDefault();
     var thisResult = '';
@@ -83,19 +83,12 @@ function searchMessage(event){
             var Parent = document.getElementById('resultsTable');
             //var thisResult = 'Results found:' + result.response.numFound + '<br/>';
             for (var i=0; i < result.response.docs.length; i++){
-                if (result.response.docs.length > 5){
-                }
                 thisResult += '<tr>';
                 thisResult += '<td>' + result.response.docs[i].message_s + '</td>';
                 thisResult += '<td>' + result.response.docs[i].date_s + '</td>';
                 thisResult += '</tr>';
             }
-           /* thisResult += '<tr>';
-            thisResult += '<td>Results Found:</td>';
-            thisResult += '<td align=right><b>' + result.response.numFound +'</b></td>';
-            thisResult += '</tr>';*/
             $('#resultsTable tbody:last').append(thisResult);
-          //  paginationTable();
             $('#numOfResults').append('<p>Results found: '+result.response.numFound.toString()+'</p>');
         });
 
@@ -103,30 +96,4 @@ function searchMessage(event){
     else {
         return false;
     }
-};
-
-
-function paginationTable(){
-    var maxRows = 10;
-    $('#resultsTable').each(function(){
-       /* var cTable = $(this);
-        var cRows = cTable.find('tr:gt(0)');
-        var cRowCount cRows.size();
-
-        if(cRowCount < maxRows){
-            return;
-        };
-        cRows.each(function(i){
-            $(this).find('td:first').text(fcuntion(j, val){
-                return (i + 1) + " - " + val;
-            });
-        });
-        cRows.filter(':gt(' + (maxRows - 1) +')').hide();
-
-        var cPrev = cTable.siblings('.prev');
-        var cNext = cTable.siblings('.next');
-
-        cPrev.addClass('disabled');*/
-        });
-
-};
+}

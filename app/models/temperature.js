@@ -7,7 +7,7 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var TemperatureSchema = new Schema({
-    temp_i: Number,
+    temp_l: Number,
     date: {type:Date, default: new Date()}
 });
 
