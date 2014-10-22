@@ -16,7 +16,7 @@ var app = express();
 //Database configure
 //
 var mongoose = require('mongoose');
-var db = mongoose.connect('mongodb://localhost:27017/messages');
+var db = mongoose.connect('mongodb://localhost:27017/api');
 //Configure the app to use the body parser
 //Lets you easily get data from POST
 //
