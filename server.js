@@ -126,6 +126,7 @@ router.route('/temperatures')
     .post(function(req, res){
         var temp = new Temperature();
         temp.temp_l = req.body.temp_l; //Sets the message from the request
+        temp.date = new Date;
         temp.save(function(err){
             if(err)
                 res.send(err);

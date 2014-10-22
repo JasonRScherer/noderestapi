@@ -8,7 +8,7 @@ var Schema = mongoose.Schema;
 
 var TemperatureSchema = new Schema({
     temp_l: Number,
-    date: {type:Date, default: new Date()}
+    date: {type: Date, default: Date.now}
 });
 
 module.exports = mongoose.model('Temperature', TemperatureSchema);
