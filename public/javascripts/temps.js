@@ -27,6 +27,7 @@ $(function(){
             chart: {
                 type: 'spline',
                 renderTo: 'chart',
+
             },
             //Data to be graphed, also starts the graph at the earliest date found
             series: [{

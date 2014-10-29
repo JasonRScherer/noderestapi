@@ -9,6 +9,7 @@
     "express-paginate": "0.0.3",
     "jade": "~1.7",
     "mongoose": "~3.8.16",
-    "mocha": "*"
+    "frisby": "*"
+
   }
 }

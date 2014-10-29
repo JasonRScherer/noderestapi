@@ -1,7 +1,8 @@
 extends layout
 
 block content
-    div.row
+    script(src='http://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js')
+    div.row(style="margin: 0 100px 0 100px")
         div.col-md-5
                 //Messages
                 h2 Message List
@@ -35,4 +36,5 @@ block content
         //  /RESULTS
         //  /WRAPPER
 
-
+    script(src='/javascripts/msgs.js')
+    
