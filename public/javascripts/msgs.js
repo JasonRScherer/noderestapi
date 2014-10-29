@@ -15,9 +15,9 @@ function populateTable(){
     var tableContent = '';
     //Used to keep the top headers of table
     $('#messagesTable tr').not(':first').remove();
-
+    try {
     //Pulls data from api to be able to display in table
-    $.getJSON('/api/messages', function(data){
+    $.getJSON('/msgs/messages', function(data){
         messageListData = data;
         var i=0;
         $.each(data, function(){
@@ -32,6 +32,10 @@ function populateTable(){
         var numOfRecords = messageListData.length;
         $('#foundRecords').replaceWith("<p id='foundRecords'>Records Found:"+ numOfRecords + "</p>");
     });
+    }
+    catch(err){
+        alert(err.message);
+    }
 }
 //Used to add a new message.  Triggered by button on page.
 //Sends to the API
@@ -54,7 +58,7 @@ function addMessage(event){
         $.ajax({
             type: 'POST',
             data: newMessage,
-            url: '/api/messages',
+            url: '/msgs/messages',
             dataType: 'JSON'
         }).done(function(response){
             if (response.message === 'New Message Created'){
@@ -91,7 +95,7 @@ function searchMessage(event){
         //Gets the value that was put into text box
         var newMessage =  $('#searchMessage input#searchMessage').val();
         //This is the URL of the solr database
-        var resultUrl = 'http://172.16.7.237:8080/solr/collection1/query?q=message_s:*'+newMessage+'*&fl=message_s, date_s&wt=json&json.wrf=?&rows=1000';
+        var resultUrl = 'http://172.16.7.88:8080/solr/collection1/query?q=message_s:*'+newMessage+'*&fl=message_s, date_s&wt=json&json.wrf=?&rows=1000';
         //Gets the data from the searched value and creates the tablecontent
         $.getJSON(resultUrl, function(result){
             var Parent = document.getElementById('resultsTable');

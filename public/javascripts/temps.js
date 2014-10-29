@@ -1,8 +1,9 @@
 
 
 $(function(){
+    $('body').css('background', '#2a2a2b');
     //Grabs data from API
-    $.getJSON('/api/temperatures', function(dataFound){
+    $.getJSON('/temps/temperatures', function(dataFound){
         //Declare variables
         var tempsFound = [];
         var startDate;
@@ -280,7 +281,8 @@ $(function(){
             dataLabelsColor: '#B0B0B3',
             textColor: '#C0C0C0',
             contrastTextColor: '#F0F0F3',
-            maskColor: 'rgba(255,255,255,0.3)'
+            maskColor: 'rgba(255,255,255,0.3)',
+            spacingRight: 10
     };
 
     // Apply the theme
