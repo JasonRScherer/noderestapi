@@ -6,15 +6,16 @@
 
 //  Call the packages we need
 //
-var express = require('express');
+var express = require('express.io');
 var bodyParser = require('body-parser');
 var Temperature = require('./app/models/temperature');
 var pub = __dirname;
 var path = require('path');
-var app = express();
+var app = express().http().io();
 var routes = require('./routes/route');
 var temperatures = require('./routes/temperatures');
 var messages = require('./routes/messages');
+var port = process.env.PORT || 3000;    //Sets the port being used
 //Database configure
 //
 var mongoose = require('mongoose');
@@ -36,9 +37,9 @@ app.use(function(req, res,next){
 });
 app.use('/', routes);
 app.use('/msgs', messages);
+
 app.use('/temps', temperatures);
-var port = process.env.PORT || 3000;    //Sets the port being used
 //Starts the server
 //
-app.listen(port);
+var server = app.listen(port);
 console.log('Server started at port ' + port);

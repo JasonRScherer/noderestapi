@@ -5,5 +5,9 @@ block content
         script(src='http://code.highcharts.com/stock/highstock.js')
         script(src='http://code.highcharts.com/stock/modules/exporting.js')
         script(src='/javascripts/temps.js')
-
-
+        script(src='/socket.io/socket.io.js')
+        script.
+            App = {};
+            App.socket = io.connect();
+            App.socket.on('temp', function(data){
+            });
