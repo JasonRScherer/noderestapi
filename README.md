@@ -27,6 +27,10 @@ NodeRestAPI uses a number of open source projects to work properly:
 Navigate to Setup folder
 
 Run setup
+rs.initiate() database
+### Issues
+* Mongodb running in background with startMongo script not working correctly
+* 
 
 ### Todo's
 
