@@ -1,2 +1,2 @@
 service mongod stop
-mongod --dbpath /workspace/nodejs/api/data/ --replSet "messages" --quiet
+mongod --dbpath ../data/ --replSet "messages" --quiet --fork --logpath /tmp/mongo.log --smallfiles --repair

@@ -85,3 +85,5 @@ echo -e "########################"
 
 cp pysolr.py /usr/local/lib/python2.7/dist-packages/pysolr-3.2.0-py2.7.egg/pysolr.py
 
+cd .. && npm install
+mkdir data

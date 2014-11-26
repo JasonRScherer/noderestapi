@@ -6,8 +6,6 @@
   "dependencies": {
     "body-parser": "~1.0.1",
     "express": "~4.9.*",
-    "express-paginate": "0.0.3",
-    "frisby": "*",
     "jade": "~1.7",
     "mongoose": "~3.8.16",
     "express.io": "*"
