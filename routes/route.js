@@ -1,4 +1,5 @@
 var express = require('express');
+
 //Routes for API
 //
 var router = express.Router();  //Starts instance of express router
@@ -11,15 +12,10 @@ router.use(function(req, res, next){
     next();
 });
 
-//Get
+//Get for basic index
 
 router.get('/', function(req, res){
     res.render('index');
 });
-
-
-
-
-
 
 module.exports = router;

@@ -13,7 +13,7 @@ router.use(function(req, res, next){
     next();
 });
 
-//Get
+//Get for msgs which renders the msgIndex template
 router.get('/', function(req, res){
     res.render('msgIndex');
 });
@@ -30,7 +30,6 @@ router.route('/messages')
         message.save(function(err){
             if(err)
                 res.send(err);
-
             res.json({message: 'New Message Created'});
         });
     })
@@ -53,7 +52,6 @@ router.route('/messages/:message_id')
                 res.send(err);
             res.json(message);
         });
-
     })
     //update the Message with given ID
     .put(function(req, res){
@@ -75,9 +73,7 @@ router.route('/messages/:message_id')
         }, function(err, message){
             if(err)
                 res.send(err);
-
             res.json({message: 'Message Deleted.'});
-
         });
     });
 
