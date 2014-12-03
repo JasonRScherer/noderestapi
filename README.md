@@ -27,7 +27,15 @@ NodeRestAPI uses a number of open source projects to work properly:
 Navigate to Setup folder
 
 Run setup
-rs.initiate() database
+
+Go into MongoDB
+
+Type rs.initiate() and hit enter
+
+Modify javascript under public/javascript/msgs.js with solr server IP
+
+Modify config file as needed
+
 ### Issues
 * Mongodb running in background with startMongo script not working correctly
 * 
