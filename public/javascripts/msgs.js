@@ -1,5 +1,6 @@
 var messageListData = [];
 
+var solrLocation = 'http://172.16.7.72';
 //DOM Ready
 //
 $(document).ready(function(){
@@ -95,7 +96,7 @@ function searchMessage(event){
         //Gets the value that was put into text box
         var newMessage =  $('#searchMessage input#searchMessage').val();
         //This is the URL of the solr database
-        var resultUrl = 'http://172.16.7.88:8080/solr/collection1/query?q=message_s:*'+newMessage+'*&fl=message_s, date_s&wt=json&json.wrf=?&rows=1000';
+        var resultUrl = solrLocation + ':8080/solr/collection1/query?q=message_s:*'+newMessage+'*&fl=message_s, date_s&wt=json&json.wrf=?&rows=1000';
         //Gets the data from the searched value and creates the tablecontent
         $.getJSON(resultUrl, function(result){
             var Parent = document.getElementById('resultsTable');

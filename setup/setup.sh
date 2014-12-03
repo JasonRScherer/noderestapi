@@ -11,7 +11,10 @@ echo -e "##################"
 apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 7F0CEB10 > /dev/null
 
 echo 'deb http://downloads-distro.mongodb.org/repo/debian-sysvinit dist 10gen' |  tee /etc/apt/sources.list.d/mongodb.list
-
+echo -e "#########################"
+echo -e "#   Updating and        #"
+echo -e "# Installing software   #" 
+echo -e "#########################\n"
 apt-get update > /dev/null
 apt-get install -y git
 apt-get install -y mongodb-org=2.6.4 
@@ -60,6 +63,12 @@ pip install lxml
 
 echo -e ""
 
+echo -e "########################"
+echo -e "#   Copying updated    #"
+echo -e "#   schema.xml file    #"
+echo -e "########################"
+
+cp schema.xml /var/lib/tomcat7/solr/collection1/conf/
 service tomcat7 restart
 git clone https://github.com/10gen-labs/mongo-connector.git
 cd mongo-connector
@@ -84,6 +93,7 @@ echo -e "#    pysolr.py file    #"
 echo -e "########################"
 
 cp pysolr.py /usr/local/lib/python2.7/dist-packages/pysolr-3.2.0-py2.7.egg/pysolr.py
+
 
 cd .. && npm install
 mkdir data
