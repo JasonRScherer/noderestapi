@@ -8,26 +8,41 @@
 echo -e "##################"
 echo -e "# Add needed key #"
 echo -e "##################"
-apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 7F0CEB10 > /dev/null
+sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 0C49F3730359A14518585931BC711F9BA15703C6 > /dev/null
 
-echo 'deb http://downloads-distro.mongodb.org/repo/debian-sysvinit dist 10gen' |  tee /etc/apt/sources.list.d/mongodb.list
+echo "deb [ arch=amd64,arm64 ] http://repo.mongodb.org/apt/ubuntu xenial/mongodb-org/3.4 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-3.4.list
 echo -e "#########################"
 echo -e "#   Updating and        #"
 echo -e "# Installing software   #" 
 echo -e "#########################\n"
 apt-get update > /dev/null
 apt-get install -y git
-apt-get install -y mongodb-org=2.6.4 
+apt-get install -y mongodb-org
 apt-get install -y curl
 apt-get install -y python-dev
 apt-get install -y libxml2-dev
 apt-get install -y libxslt1-dev
 apt-get install -y vim
-curl -sL https://deb.nodesource.com/setup | bash -
+apt-get install -y build-essential
 
-apt-get install -y nodejs python-pip openjdk-7-jre-headless
+curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash -
 
-apt-get install -y tomcat7 tomcat7-admin
+
+apt-get install -y nodejs python-pip default-jdk
+groupadd tomcat
+useradd -s /bin/false -g tomcat -d /opt/tomcat tomcat
+
+
+curl -O http://www-us.apache.org/dist/tomcat/tomcat-7/v7.0.79/bin/apache-tomcat-7.0.79.tar.gz
+mkdir /opt/tomcat
+tar xzvf apache-tomcat-7*tar.gz -C /opt/tomcat --strip-components=1
+chgrp -R tomcat /opt/tomcat
+chmod -R g+r /opt/tomcat/conf
+chmod g+x /opt/tomcat/conf
+chown -R tomcat /opt/tomcat/webapps/ /opt/tomcat/work/ /opt/tomcat/temp/ /opt/tomcat/logs/ 
+##HERE STOPPED
+
+
 echo -e "#########################"
 echo -e "#        Back up        #"
 echo -e "#    Tomcat-users.xml   #" 

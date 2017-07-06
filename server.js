@@ -6,21 +6,21 @@
 
 //  Call the packages we need
 //
-var express = require('express.io');
-var bodyParser = require('body-parser');
-var Temperature = require('./app/models/temperature');
-var pub = __dirname;
-var path = require('path');
-var app = express().http().io();
-var routes = require('./routes/route');
-var temperatures = require('./routes/temperatures');
-var messages = require('./routes/messages');
-var config = require('./config/cfg');
-var mongoose = require('mongoose');
+const express = require('express');
+const bodyParser = require('body-parser');
+const Temperature = require('./app/models/temperature');
+const pub = __dirname;
+const path = require('path');
+const app = express();
+const routes = require('./routes/route');
+const temperatures = require('./routes/temperatures');
+const messages = require('./routes/messages');
+const config = require('./config/cfg');
+const mongoose = require('mongoose');
 
 //Database configure
 //
-var db = mongoose.connect(config.mongoDB.location);
+const db = mongoose.connect(config.mongoDB.location);
 
 //Configure the app to use the body parser
 //Lets you easily get data from POST
@@ -46,5 +46,5 @@ app.use('/temps', temperatures);
 
 //Starts the server
 //
-var server = app.listen(config.web.port);
+const server = app.listen(config.web.port);
 console.log('Server started at port ' + config.web.port  + '\nCtrl+C to close');
