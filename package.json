@@ -4,10 +4,16 @@
   "version": "0.0.1",
   "private": true,
   "dependencies": {
-    "body-parser": "~1.0.1",
-    "express": "~4.9.*",
-    "jade": "~1.7",
-    "mongoose": "~3.8.16",
-    "express.io": "*"
-  }
+    "body-parser": "~1.17.1",
+    "express": "~4.15.3",
+    "jade": "~1.8.0",
+    "mongoose": "~4.10.2",
+    "express.io": "*",
+    "snyk": "^1.40.2"
+  },
+  "scripts": {
+    "snyk-protect": "snyk protect",
+    "prepublish": "npm run snyk-protect"
+  },
+  "snyk": true
 }
