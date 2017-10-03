@@ -4,10 +4,10 @@
   "version": "0.0.1",
   "private": true,
   "dependencies": {
-    "body-parser": "~1.17.1",
-    "express": "~4.15.3",
+    "body-parser": "~1.18.2",
+    "express": "~4.16.0",
     "jade": "~1.8.0",
-    "mongoose": "~4.10.2",
+    "mongoose": "~4.11.14",
     "express.io": "*",
     "snyk": "^1.40.2"
   },
