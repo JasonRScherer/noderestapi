@@ -9,11 +9,12 @@
     "jade": "~1.8.0",
     "mongoose": "~4.11.14",
     "express.io": "*",
-    "snyk": "^1.40.2"
+    "snyk": "^1.85.0"
   },
   "scripts": {
     "snyk-protect": "snyk protect",
-    "prepublish": "npm run snyk-protect"
+    "prepublish": "npm run snyk-protect",
+    "prepare": "npm run snyk-protect"
   },
   "snyk": true
 }
