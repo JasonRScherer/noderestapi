@@ -9,7 +9,7 @@
     "jade": "~1.8.0",
     "mongoose": "~4.13.17",
     "express.io": "*",
-    "snyk": "^1.174.1"
+    "snyk": "^1.192.4"
   },
   "scripts": {
     "snyk-protect": "snyk protect",
